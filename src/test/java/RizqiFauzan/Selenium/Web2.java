@@ -27,6 +27,9 @@ public class Web2 {
 		By inputUsername = By.name("username");
 		By inputPassword = By.xpath("//input[@name='password']");
 		By btnLogin = By.xpath("//input[@name='loginButton']");
+		
+		
+		By abc = By.id("input_username");
 
 		
 		driver.findElement(inputUsername).sendKeys("admin");

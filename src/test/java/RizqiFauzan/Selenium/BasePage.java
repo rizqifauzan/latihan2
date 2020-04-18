@@ -11,7 +11,7 @@ public class BasePage {
 
     //Constructor
     public BasePage(WebDriver driver) {
-        this.driver = driver;
+		this.driver = driver;
         wait = new WebDriverWait(driver, 10);    }
 
     //Click Method
@@ -35,5 +35,12 @@ public class BasePage {
     //Wait
     public void waitVisibility(By by){
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+    
+    //Click Method
+    public void clickLastItem(By elementLocation) {
+        waitVisibility(elementLocation);
+    	int i = driver.findElements(elementLocation).size();
+    	driver.findElements(elementLocation).get(i-1).click();
     }
 }
