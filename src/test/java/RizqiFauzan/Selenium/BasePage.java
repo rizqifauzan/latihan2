@@ -23,6 +23,7 @@ public class BasePage {
     //Write Text
     public void writeText(By elementLocation, String text) {
         waitVisibility(elementLocation);
+        driver.findElement(elementLocation).clear();
         driver.findElement(elementLocation).sendKeys(text);
     }
 
@@ -30,11 +31,19 @@ public class BasePage {
     public String readText(By elementLocation) {
         waitVisibility(elementLocation);
         return driver.findElement(elementLocation).getText();
+    } //Read Text
+    
+    
+    public String readTextLastItem(By elementLocation) {
+        waitVisibility(elementLocation);
+    	int i = driver.findElements(elementLocation).size();
+        return driver.findElements(elementLocation).get(i-1).getText();
     }
 
     //Wait
     public void waitVisibility(By by){
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        wait.until(ExpectedConditions.elementToBeClickable(by));
     }
     
     //Click Method

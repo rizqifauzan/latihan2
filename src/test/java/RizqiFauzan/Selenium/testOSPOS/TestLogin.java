@@ -1,4 +1,4 @@
-package RizqiFauzan.Selenium;
+package RizqiFauzan.Selenium.testOSPOS;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,13 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import RizqiFauzan.Selenium.page.HomePage;
-import RizqiFauzan.Selenium.page.HomePage2;
+import RizqiFauzan.Selenium.page.ospos.LoginPage;
 
-public class TestMidtrans {
+public class TestLogin {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub'
+		// TODO Auto-generated method stub
 		WebDriver driver;
 		WebDriverWait wait;
 
@@ -21,17 +20,17 @@ public class TestMidtrans {
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		HomePage hm = new HomePage(driver);
-		HomePage2 hm2 = new HomePage2(driver);
+		LoginPage lp = new LoginPage(driver);
 		
-		String ccNumber = "4811 1111 1111 1114";
-		String expDat = "02 21";
-		String cvvNum = "123";
+		lp.goToLoginPage()
+			.inputCreadential("admin", "pointofsale")
+			.goToHomePage()
+			.verifyUsername("John Doe")
+			.goToGiftCard()
+			.verifyPage()
+			.addGiftCard("70")
+			.verifyLastCard("$70.00");
 		
-		hm.goToDemo()
-			.checkOut();
-		hm2.confirmItem()
-			.payWIthCC(ccNumber, expDat, cvvNum);
+		driver.quit();
 	}
-
 }
